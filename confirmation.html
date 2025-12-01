@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation de commande - Maillots & Blousons Sénégal</title>
+    <style>
+        /* ==== Variables CSS ==== */
+        :root {
+            --primary-color: #00853f;
+            --secondary-color: #ffffff;
+            --accent-color: #fd0d1b;
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 15px;
+        }
+
+        .confirmation-message {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--light-gray);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .confirmation-message h1 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .confirmation-message p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #006b32;
+            transform: translateY(-2px);
+        }
+
+        .order-summary {
+            margin-top: 40px;
+            background-color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .order-items {
+            margin-bottom: 20px;
+        }
+
+        .order-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .item-options {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .item-price {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .item-quantity {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .summary-total {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="confirmation-message">
+            <h1>✅ Merci pour votre commande !</h1>
+            <p>Votre commande a été enregistrée avec succès.</p>
+            <p>Numéro de commande : <span id="orderId"></span></p>
+            <a href="index.html" class="btn">Retour à l'accueil</a>
+        </div>
+
+        <div class="order-summary" id="orderSummary">
+            <h2>Récapitulatif de votre commande</h2>
+            <div class="order-items" id="orderItems">
+                <!-- Articles de la commande -->
+            </div>
+
+            <div class="summary-row">
+                <span>Sous-total:</span>
+                <span id="subtotal">0 FCFA</span>
+            </div>
+            <div class="summary-row">
+                <span>Livraison:</span>
+                <span id="shipping">0 FCFA</span>
+            </div>
+            <div class="summary-row summary-total">
+                <span>Total:</span>
+                <span id="total">0 FCFA</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Récupérer la commande depuis localStorage
+        const currentOrder = JSON.parse(localStorage.getItem('currentOrder'));
+        if (!currentOrder) {
+            document.getElementById('orderSummary').innerHTML = "<p>Aucune commande trouvée.</p>";
+        } else {
+            document.getElementById('orderId').textContent = currentOrder.orderId;
+
+            const orderItemsContainer = document.getElementById('orderItems');
+            let subtotal = 0;
+
+            currentOrder.items.forEach(item => {
+                const itemTotal = item.unitPrice * item.quantity;
+                subtotal += itemTotal;
+
+                let optionsHTML = '';
+                if (item.color) optionsHTML += `${item.color}`;
+                if (item.size) optionsHTML += ` - ${item.size}`;
+                if (item.flocage === 'avec' && item.personalization) {
+                    optionsHTML += ` - ${item.personalization.name} ${item.personalization.number}`;
+                }
+
+                const itemElement = document.createElement('div');
+                itemElement.className = 'order-item';
+                itemElement.innerHTML = `
+                    <div class="item-image">
+                        <img src="${item.image || 'https://via.placeholder.com/100x100'}" alt="${item.name}">
+                    </div>
+                    <div class="item-details">
+                        <div class="item-name">${item.name}</div>
+                        ${optionsHTML ? `<div class="item-options">${optionsHTML}</div>` : ''}
+                        <div class="item-price">${item.unitPrice.toLocaleString()} FCFA</div>
+                    </div>
+                    <div class="item-quantity">x${item.quantity}</div>
+                `;
+                orderItemsContainer.appendChild(itemElement);
+            });
+
+            const shipping = subtotal >= 25000 ? 0 : 2000;
+            const total = subtotal + shipping;
+
+            document.getElementById('subtotal').textContent = `${subtotal.toLocaleString()} FCFA`;
+            document.getElementById('shipping').textContent = shipping === 0 ? 'Gratuite' : `${shipping.toLocaleString()} FCFA`;
+            document.getElementById('total').textContent = `${total.toLocaleString()} FCFA`;
+
+            // Optionnel : vider currentOrder si tu veux éviter que l'utilisateur revienne sur cette page
+            // localStorage.removeItem('currentOrder');
+        }
+    </script>
+</body>
+</html>

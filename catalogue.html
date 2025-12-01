@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogue - Maillots & Blousons Sénégal</title>
+    <style>
+        /* Styles précédents conservés */
+        :root {
+            --primary-color: #00853f; /* Vert Sénégal */
+            --secondary-color: #ffffff; /* Blanc */
+            --accent-color: #fd0d1b; /* Rouge Sénégal */
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #006b32;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #d10b17;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 10px auto 0;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--box-shadow);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-icon {
+            position: relative;
+            margin-right: 20px;
+            font-size: 1.2rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x800') no-repeat center center/cover;
+            color: var(--secondary-color);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* Featured Products */
+        .featured-products {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .new-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .product-sizes {
+            margin-bottom: 15px;
+        }
+
+        .product-sizes small {
+            color: #666;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Categories */
+        .categories {
+            padding: 80px 0;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .category-card {
+            position: relative;
+            height: 300px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .category-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: var(--secondary-color);
+            padding: 20px;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background-color: var(--primary-color);
+                transition: var(--transition);
+                z-index: 999;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            nav ul li {
+                margin: 0 0 15px 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-btns .btn {
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* Nouveaux styles pour le catalogue */
+        
+        .catalogue-header {
+            background-color: var(--light-gray);
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .filters-section {
+            background-color: var(--secondary-color);
+            padding: 30px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-group {
+            margin-bottom: 15px;
+        }
+        
+        .filter-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .filter-select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            background-color: var(--secondary-color);
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        
+        .filter-option {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            background-color: var(--light-gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-option.active {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .search-box {
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+        
+        .search-box button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0 20px;
+        }
+        
+        .sort-select {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+        }
+        
+        .results-count {
+            color: #666;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            gap: 10px;
+        }
+        
+        .page-btn {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            background-color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+        
+        .page-btn.active {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (identique à la page d'accueil) -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMjU2IDBDMTE0LjYgMCAwIDExNC42IDAgMjU2czExNC42IDI1NiAyNTYgMjU2czI1Ni0xMTQuNiAyNTYtMjU2UzM5Ny40IDAgMjU2IDB6TTM5OC45IDI1NmMwIDc4LjktNjQuMSAxNDMtMTQzIDE0M3MtMTQzLTY0LjEtMTQzLTE0M3M2NC4xLTE0MyAxNDMtMTQzczE0MyA2NC4xIDE0MyAxNDN6Ii8+PHBhdGggZmlsbD0iI2ZkMGQxYiIgZD0iTTM5OC45IDI1NmMwIDc4LjktNjQuMSAxNDMtMTQzIDE0M3MtMTQzLTY0LjEtMTQzLTE0M3M2NC4xLTE0MyAxNDMtMTQzczE0MyA2NC4xIDE0MyAxNDN6Ii8+PHBhdGggZmlsbD0iIzAwODUzZiIgZD0iTTI1NS45IDM2OGMtNjEuOSAwLTExMi01MC4xLTExMi0xMTJzNTAuMS0xMTIgMTEyLTExMnMxMTIgNTAuMSAxMTIgMTEycy01MC4xIDExMi0xMTIgMTEyeiIvPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0yODcuOSAyMjRoLTI0di00OGgtMjR2NDhoLTI0djcyaDI0djQ4aDI0di00OGgyNHYtNzJ6Ii8+PC9zdmc+" alt="Drapeau Sénégal">
+                Maillots & <span>Blousons</span> Sénégal
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                ☰
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="catalogue.html" class="active">Catalogue</a></li>
+                    <li><a href="maillots.html">Maillots</a></li>
+                    <li><a href="blousons.html">Blousons</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="panier.html" class="cart-icon">
+                    🛒
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- En-tête du catalogue -->
+    <section class="catalogue-header">
+        <div class="container">
+            <h1>Notre Catalogue</h1>
+            <p>Découvrez toute notre collection de maillots et blousons Sénégal</p>
+        </div>
+    </section>
+
+    <!-- Filtres -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="search-box">
+                <input type="text" placeholder="Rechercher un produit...">
+                <button>🔍</button>
+            </div>
+            
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label>Catégorie</label>
+                    <div class="filter-options">
+                        <div class="filter-option active" data-filter="all">Tous</div>
+                        <div class="filter-option" data-filter="maillot">Maillots</div>
+                        <div class="filter-option" data-filter="blouson">Blousons</div>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Couleur</label>
+                    <div class="filter-options">
+                        <div class="filter-option active" data-color="all">Toutes</div>
+                        <div class="filter-option" data-color="vert">Vert</div>
+                        <div class="filter-option" data-color="blanc">Blanc</div>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Taille</label>
+                    <div class="filter-options">
+                        <div class="filter-option active" data-size="all">Toutes</div>
+                        <div class="filter-option" data-size="S">S</div>
+                        <div class="filter-option" data-size="M">M</div>
+                        <div class="filter-option" data-size="L">L</div>
+                        <div class="filter-option" data-size="XL">XL</div>
+                        <div class="filter-option" data-size="XXL">XXL</div>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Flocage</label>
+                    <div class="filter-options">
+                        <div class="filter-option active" data-flocage="all">Les deux</div>
+                        <div class="filter-option" data-flocage="avec">Avec flocage</div>
+                        <div class="filter-option" data-flocage="sans">Sans flocage</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn" id="resetFilters">Réinitialiser les filtres</button>
+        </div>
+    </section>
+
+    <!-- Produits -->
+    <section class="featured-products">
+        <div class="container">
+            <div class="products-header">
+                <div class="results-count">12 produits trouvés</div>
+                <div>
+                    <label>Trier par: </label>
+                    <select class="sort-select">
+                        <option value="popularite">Popularité</option>
+                        <option value="prix-croissant">Prix croissant</option>
+                        <option value="prix-decroissant">Prix décroissant</option>
+                        <option value="nouveaute">Nouveautés</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Produits générés dynamiquement -->
+            </div>
+            
+            <div class="pagination">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">Suivant</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (identique à la page d'accueil) -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Maillots & Blousons Sénégal</h3>
+                    <p>Votre boutique en ligne pour les tenues officielles des Lions du Sénégal. Qualité, authenticité et fierté nationale.</p>
+                    <div class="social-links">
+                        <a href="#"><span>FB</span></a>
+                        <a href="#"><span>IG</span></a>
+                        <a href="#"><span>TW</span></a>
+                        <a href="#"><span>WA</span></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="catalogue.html">Catalogue</a></li>
+                        <li><a href="maillots.html">Maillots</a></li>
+                        <li><a href="blousons.html">Blousons</a></li>
+                        <li><a href="promotions.html">Promotions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Informations</h3>
+                    <ul class="footer-links">
+                        <li><a href="apropos.html">À propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="livraison.html">Livraison</a></li>
+                        <li><a href="retours.html">Retours & Échanges</a></li>
+                        <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li>📞 +221 77 123 45 67</li>
+                        <li>✉️ contact@maillotssenegal.com</li>
+                        <li>📍 Dakar, Sénégal</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Maillots & Blousons Sénégal. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Données des produits avec les bons IDs textuels
+        const products = [
+            {
+                id: "maillot-vert",
+                name: "Maillot Sénégal Vert",
+                category: "maillot",
+                price: 7500,
+                priceWithFlocage: 10000,
+                color: "vert",
+                sizes: ["S", "M", "L", "XL", "XXL"],
+                image: "https://image-service.onefootball.com/transform?w=840&h=630&dpr=2&image=https%3A%2F%2Ffilebucket.onefootball.com%2F2024%2F11%2F1731525651755-GcSF_URWkAAYG8F.jpeg",
+                hasFlocage: true,
+                isNew: true
+            },
+            {
+                id: "maillot-blanc",
+                name: "Maillot Sénégal Blanc",
+                category: "maillot",
+                price: 7500,
+                priceWithFlocage: 10000,
+                color: "blanc",
+                sizes: ["S", "M", "L", "XL"],
+                image: "https://via.placeholder.com/300x300/ffffff/000000?text=Maillot+Blanc",
+                hasFlocage: true,
+                isNew: false
+            },
+            {
+                id: "blouson-vert",
+                name: "Blouson Sénégal Vert",
+                category: "blouson",
+                price: 12000,
+                color: "vert",
+                sizes: ["M", "L", "XL", "XXL"],
+                image: "https://via.placeholder.com/300x300/00853f/ffffff?text=Blouson+Vert",
+                hasFlocage: false,
+                isNew: true
+            },
+            {
+                id: "blouson-blanc",
+                name: "Blouson Sénégal Blanc",
+                category: "blouson",
+                price: 12000,
+                color: "blanc",
+                sizes: ["M", "L", "XL"],
+                image: "https://via.placeholder.com/300x300/ffffff/000000?text=Blouson+Blanc",
+                hasFlocage: false,
+                isNew: false
+            },
+            {
+                id: "maillot-vert-enfant",
+                name: "Maillot Sénégal Vert Enfant",
+                category: "maillot",
+                price: 6000,
+                priceWithFlocage: 8500,
+                color: "vert",
+                sizes: ["XS", "S", "M"],
+                image: "https://via.placeholder.com/300x300/00853f/ffffff?text=Maillot+Enfant",
+                hasFlocage: true,
+                isNew: true
+            },
+            {
+                id: "maillot-blanc-enfant",
+                name: "Maillot Sénégal Blanc Enfant",
+                category: "maillot",
+                price: 6000,
+                priceWithFlocage: 8500,
+                color: "blanc",
+                sizes: ["XS", "S", "M"],
+                image: "https://via.placeholder.com/300x300/ffffff/000000?text=Maillot+Enfant",
+                hasFlocage: true,
+                isNew: false
+            }
+        ];
+
+        // Fonction pour afficher les produits
+        function displayProducts(productsToShow) {
+            const productsGrid = document.querySelector('.products-grid');
+            const resultsCount = document.querySelector('.results-count');
+            
+            productsGrid.innerHTML = '';
+            resultsCount.textContent = `${productsToShow.length} produits trouvés`;
+            
+            productsToShow.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.setAttribute('data-category', product.category);
+                productCard.setAttribute('data-color', product.color);
+                productCard.setAttribute('data-flocage', product.hasFlocage ? 'avec' : 'sans');
+                
+                const priceHTML = product.hasFlocage ? 
+                    `${product.price.toLocaleString()} FCFA - ${product.priceWithFlocage.toLocaleString()} FCFA` : 
+                    `${product.price.toLocaleString()} FCFA`;
+                
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                        ${product.isNew ? '<span class="new-badge">Nouveau</span>' : ''}
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-price">${priceHTML}</p>
+                        <div class="product-sizes">
+                            <small>Tailles: ${product.sizes.join(', ')}</small>
+                        </div>
+                        <div class="product-actions">
+                            <a href="produit.html?id=${product.id}" class="btn">Voir détails</a>
+                            <button class="btn btn-secondary add-to-cart" data-id="${product.id}">Ajouter</button>
+                        </div>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(productCard);
+            });
+            
+            // Réattacher les événements d'ajout au panier
+            attachAddToCartEvents();
+        }
+
+        // Filtrage des produits
+        function filterProducts() {
+            const activeCategory = document.querySelector('.filter-option[data-filter].active').dataset.filter;
+            const activeColor = document.querySelector('.filter-option[data-color].active').dataset.color;
+            const activeFlocage = document.querySelector('.filter-option[data-flocage].active').dataset.flocage;
+            
+            let filteredProducts = products;
+            
+            if (activeCategory !== 'all') {
+                filteredProducts = filteredProducts.filter(product => product.category === activeCategory);
+            }
+            
+            if (activeColor !== 'all') {
+                filteredProducts = filteredProducts.filter(product => product.color === activeColor);
+            }
+            
+            if (activeFlocage !== 'all') {
+                const wantsFlocage = activeFlocage === 'avec';
+                filteredProducts = filteredProducts.filter(product => product.hasFlocage === wantsFlocage);
+            }
+            
+            displayProducts(filteredProducts);
+        }
+
+        // Événements des filtres
+        document.querySelectorAll('.filter-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const parent = this.parentElement;
+                parent.querySelectorAll('.filter-option').forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+                filterProducts();
+            });
+        });
+
+        // Réinitialisation des filtres
+        document.getElementById('resetFilters').addEventListener('click', function() {
+            document.querySelectorAll('.filter-option').forEach(option => {
+                if (option.dataset.filter === 'all' || 
+                    option.dataset.color === 'all' || 
+                    option.dataset.flocage === 'all' ||
+                    option.dataset.size === 'all') {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+            filterProducts();
+        });
+
+        // Gestion du panier
+        let cartCount = 0;
+        const cartCountElement = document.querySelector('.cart-count');
+        
+        function attachAddToCartEvents() {
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.dataset.id;
+                    const product = products.find(p => p.id === productId);
+                    
+                    if (product) {
+                        // Ajouter au panier (localStorage)
+                        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                        cart.push({
+                            id: product.id,
+                            name: product.name,
+                            quantity: 1,
+                            unitPrice: product.hasFlocage ? product.priceWithFlocage : product.price,
+                            image: product.image
+                        });
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        
+                        // Mettre à jour le compteur
+                        updateCartCount();
+                        
+                        // Animation du compteur
+                        cartCountElement.style.transform = 'scale(1.3)';
+                        setTimeout(() => {
+                            cartCountElement.style.transform = 'scale(1)';
+                        }, 300);
+                        
+                        // Message de confirmation
+                        alert('Produit ajouté au panier!');
+                    }
+                });
+            });
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountElement.textContent = totalItems;
+        }
+
+        // Menu mobile
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+
+        // Initialisation
+        displayProducts(products);
+        updateCartCount();
+    </script>
+</body>
+</html>

@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Maillots & Blousons Sénégal</title>
+    <style>
+        /* Variables CSS */
+        :root {
+            --primary-color: #00853f;
+            --secondary-color: #ffffff;
+            --accent-color: #fd0d1b;
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #006b32;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #d10b17;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 10px auto 0;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--box-shadow);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-icon {
+            position: relative;
+            margin-right: 20px;
+            font-size: 1.2rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+        }
+
+        /* Page Contact */
+        .contact-page {
+            padding: 80px 0;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .contact-info {
+            background-color: var(--light-gray);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .contact-info h2 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h3 {
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .contact-details p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .contact-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .contact-link:hover {
+            color: var(--accent-color);
+        }
+
+        .social-contact {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .social-contact a {
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .social-contact a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .contact-form {
+            background-color: var(--secondary-color);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .contact-form h2 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0, 133, 63, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+        }
+
+        .map-section {
+            margin-top: 60px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, var(--light-gray) 25%, transparent 25%), 
+                        linear-gradient(-45deg, var(--light-gray) 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, var(--light-gray) 75%), 
+                        linear-gradient(-45deg, transparent 75%, var(--light-gray) 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .business-hours {
+            margin-top: 40px;
+            background-color: var(--light-gray);
+            padding: 30px;
+            border-radius: var(--border-radius);
+        }
+
+        .business-hours h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        .day {
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .contact-container {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background-color: var(--primary-color);
+                transition: var(--transition);
+                z-index: 999;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            nav ul li {
+                margin: 0 0 15px 0;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .contact-page {
+                padding: 60px 0;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 20px;
+            }
+
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-icon {
+                align-self: center;
+            }
+
+            .social-contact {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMjU2IDBDMTE0LjYgMCAwIDExNC42IDAgMjU2czExNC42IDI1NiAyNTYgMjU2czI1Ni0xMTQuNiAyNTYtMjU2UzM5Ny40IDAgMjU2IDB6TTM5OC45IDI1NmMwIDc4LjktNjQuMSAxNDMtMTQzIDE0M3MtMTQzLTY0LjEtMTQzLTE0M3M2NC4xLTE0MyAxNDMtMTQzczE0MyA2NC4xIDE0MyAxNDN6Ii8+PHBhdGggZmlsbD0iI2ZkMGQxYiIgZD0iTTM5OC45IDI1NmMwIDc4LjktNjQuMSAxNDMtMTQzIDE0M3MtMTQzLTY0LjEtMTQzLTE0M3M2NC4xLTE0MyAxNDMtMTQzczE0MyA2NC4xIDE0MyAxNDN6Ii8+PHBhdGggZmlsbD0iIzAwODUzZiIgZD0iTTI1NS45IDM2OGMtNjEuOSAwLTExMi01MC4xLTExMi0xMTJzNTAuMS0xMTIgMTEyLTExMnMxMTIgNTAuMSAxMTIgMTEycy01MC4xIDExMi0xMTIgMTEyeiIvPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0yODcuOSAyMjRoLTI0di00OGgtMjR2NDhoLTI0djcyaDI0djQ4aDI0di00OGgyNHYtNzJ6Ii8+PC9zdmc+" alt="Drapeau Sénégal">
+                Maillots & <span>Blousons</span> Sénégal
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                ☰
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="catalogue.html">Catalogue</a></li>
+                    <li><a href="maillots.html">Maillots</a></li>
+                    <li><a href="blousons.html">Blousons</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="panier.html" class="cart-icon">
+                    🛒
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Contact -->
+    <section class="contact-page">
+        <div class="container">
+            <h1 class="section-title">Contactez-nous</h1>
+            <p style="text-align: center; margin-bottom: 40px; color: #666; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Nous sommes à votre disposition pour répondre à toutes vos questions. N'hésitez pas à nous contacter par téléphone, email ou via le formulaire de contact.
+            </p>
+            
+            <div class="contact-container">
+                <!-- Informations de contact -->
+                <div class="contact-info">
+                    <h2>Nos Coordonnées</h2>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h3>Téléphone</h3>
+                            <p>Appelez-nous pour vos commandes</p>
+                            <a href="tel:+221774567890" class="contact-link">+221 77 456 78 90</a>
+                            <a href="tel:+221764567891" class="contact-link">+221 76 456 78 91</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>Envoyez-nous un message</p>
+                            <a href="mailto:contact@maillotssenegal.com" class="contact-link">contact@maillotssenegal.com</a>
+                            <a href="mailto:ventes@maillotssenegal.com" class="contact-link">ventes@maillotssenegal.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h3>Adresse</h3>
+                            <p>Venez nous rencontrer</p>
+                            <p><strong>Rue 10, Point E</strong></p>
+                            <p>Dakar, Sénégal</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">💬</div>
+                        <div class="contact-details">
+                            <h3>WhatsApp</h3>
+                            <p>Contact rapide</p>
+                            <a href="https://wa.me/221774567890" class="contact-link" target="_blank">+221 77 456 78 90</a>
+                        </div>
+                    </div>
+                    
+                    <div class="social-contact">
+                        <a href="https://facebook.com/maillotssenegal" target="_blank" title="Facebook">
+                            <span>FB</span>
+                        </a>
+                        <a href="https://instagram.com/maillotssenegal" target="_blank" title="Instagram">
+                            <span>IG</span>
+                        </a>
+                        <a href="https://twitter.com/maillotssenegal" target="_blank" title="Twitter">
+                            <span>TW</span>
+                        </a>
+                        <a href="https://wa.me/221774567890" target="_blank" title="WhatsApp">
+                            <span>WA</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Formulaire de contact -->
+                <div class="contact-form">
+                    <h2>Envoyez-nous un message</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nom complet *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Téléphone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Sujet *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Sélectionnez un sujet</option>
+                                <option value="commande">Question sur une commande</option>
+                                <option value="produit">Information sur un produit</option>
+                                <option value="livraison">Question sur la livraison</option>
+                                <option value="retour">Retour ou échange</option>
+                                <option value="partenariat">Partenariat</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" placeholder="Décrivez votre demande en détail..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-secondary submit-btn">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Horaires d'ouverture -->
+            <div class="business-hours">
+                <h3>Horaires d'ouverture</h3>
+                <ul class="hours-list">
+                    <li>
+                        <span class="day">Lundi - Vendredi</span>
+                        <span class="hours">08:00 - 18:00</span>
+                    </li>
+                    <li>
+                        <span class="day">Samedi</span>
+                        <span class="hours">09:00 - 17:00</span>
+                    </li>
+                    <li>
+                        <span class="day">Dimanche</span>
+                        <span class="hours">10:00 - 15:00</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Section Carte -->
+            <div class="map-section">
+                <div class="map-placeholder">
+                    📍 Carte - Rue 10, Point E, Dakar, Sénégal
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Maillots & Blousons Sénégal</h3>
+                    <p>Votre boutique en ligne pour les tenues officielles des Lions du Sénégal. Qualité, authenticité et fierté nationale.</p>
+                    <div class="social-links">
+                        <a href="https://facebook.com/maillotssenegal" target="_blank"><span>FB</span></a>
+                        <a href="https://instagram.com/maillotssenegal" target="_blank"><span>IG</span></a>
+                        <a href="https://twitter.com/maillotssenegal" target="_blank"><span>TW</span></a>
+                        <a href="https://wa.me/221774567890" target="_blank"><span>WA</span></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="catalogue.html">Catalogue</a></li>
+                        <li><a href="maillots.html">Maillots</a></li>
+                        <li><a href="blousons.html">Blousons</a></li>
+                        <li><a href="promotions.html">Promotions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Informations</h3>
+                    <ul class="footer-links">
+                        <li><a href="apropos.html">À propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="livraison.html">Livraison</a></li>
+                        <li><a href="retours.html">Retours & Échanges</a></li>
+                        <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li>📞 +221 77 456 78 90</li>
+                        <li>📞 +221 76 456 78 91</li>
+                        <li>✉️ contact@maillotssenegal.com</li>
+                        <li>📍 Rue 10, Point E, Dakar</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Maillots & Blousons Sénégal. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+
+        // Gestion du formulaire de contact
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validation basique
+            const requiredFields = this.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = 'var(--accent-color)';
+                } else {
+                    field.style.borderColor = '#ddd';
+                }
+            });
+            
+            if (!isValid) {
+                alert('Veuillez remplir tous les champs obligatoires.');
+                return;
+            }
+            
+            // Récupération des données du formulaire
+            const formData = new FormData(this);
+            const contactData = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                subject: formData.get('subject'),
+                message: formData.get('message'),
+                date: new Date().toISOString()
+            };
+            
+            // Simulation d'envoi (remplacer par votre backend)
+            console.log('Données du formulaire:', contactData);
+            
+            // Affichage message de confirmation
+            alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
+            
+            // Réinitialisation du formulaire
+            this.reset();
+        });
+
+        // Mise à jour du compteur du panier
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = totalItems;
+        }
+
+        // Initialisation
+        updateCartCount();
+    </script>
+</body>
+</html>

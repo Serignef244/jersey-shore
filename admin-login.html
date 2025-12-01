@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion Admin - Maillots & Blousons Sénégal</title>
+    <style>
+        :root {
+            --primary-color: #00853f;
+            --secondary-color: #ffffff;
+            --accent-color: #fd0d1b;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color), #006b32);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        }
+
+        .login-box {
+            background-color: var(--secondary-color);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .login-title {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 133, 63, 0.1);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            background-color: #006b32;
+        }
+
+        .error-message {
+            color: #dc3545;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 576px) {
+            .login-box {
+                padding: 30px 20px;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMDA4NTNmIiBkPSJNMjU2IDBDMTE0LjYgMCAwIDExNC42IDAgMjU2czExNC42IDI1NiAyNTYgMjU2czI1Ni0xMTQuNiAyNTYtMjU2UzM5Ny40IDAgMjU2IDB6TTM5OC45IDI1NmMwIDc4LjktNjQuMSAxNDMtMTQzIDE0M3MtMTQzLTY0LjEtMTQzLTE0M3M2NC4xLTE0MyAxNDMtMTQzczE0MyA2NC4xIDE0MyAxNDN6Ii8+PHBhdGggZmlsbD0iI2ZkMGQxYiIgZD0iTTM5OC45IDI1NmMwIDc4LjktNjQuMSAxNDMtMTQzIDE0M3MtMTQzLTY0LjEtMTQzLTE0M3M2NC4xLTE0MyAxNDMtMTQzczE0MyA2NC4xIDE0MyAxNDN6Ii8+PHBhdGggZmlsbD0iIzAwODUzZiIgZD0iTTI1NS45IDM2OGMtNjEuOSAwLTExMi01MC4xLTExMi0xMTJzNTAuMS0xMTIgMTEyLTExMnMxMTIgNTAuMSAxMTIgMTEycy01MC4xIDExMi0xMTIgMTEyeiIvPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0yODcuOSAyMjRoLTI0di00OGgtMjR2NDhoLTI0djcyaDI0djQ4aDI0di00OGgyNHYtNzJ6Ii8+PC9zdmc+" alt="Drapeau Sénégal">
+                <span>Admin</span>
+            </div>
+            
+            <h1 class="login-title">Connexion Administrateur</h1>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" id="username" name="username" required autofocus>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <button type="submit" class="login-btn">Se connecter</button>
+                
+                <div id="errorMessage" class="error-message"></div>
+            </form>
+            
+            <a href="index.html" class="back-link">← Retour au site</a>
+        </div>
+    </div>
+
+    <script>
+        // Informations de connexion (à changer en production)
+        const ADMIN_CREDENTIALS = {
+            username: 'admin',
+            password: 'maillots123'
+        };
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Validation
+            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                // Connexion réussie
+                localStorage.setItem('adminLoggedIn', 'true');
+                localStorage.setItem('adminLastLogin', new Date().toISOString());
+                
+                // Redirection vers la page admin
+                window.location.href = 'admin.html';
+            } else {
+                // Échec de connexion
+                errorMessage.textContent = 'Nom d\'utilisateur ou mot de passe incorrect.';
+            }
+        });
+    </script>
+</body>
+</html>

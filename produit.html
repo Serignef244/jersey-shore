@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maillot Sénégal - Maillots & Blousons Sénégal</title>
+    <style>
+        :root {
+            --primary-color: #00853f;
+            --secondary-color: #ffffff;
+            --accent-color: #fd0d1b;
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #006b32;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #d10b17;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--box-shadow);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-icon {
+            position: relative;
+            margin-right: 20px;
+            font-size: 1.2rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+        }
+
+        .product-detail {
+            padding: 60px 0;
+        }
+        
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        
+        .product-gallery {
+            position: relative;
+        }
+        
+        .main-image {
+            width: 100%;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        .main-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .thumbnail-gallery {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border: 2px solid transparent;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .thumbnail.active {
+            border-color: var(--primary-color);
+        }
+        
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 20px 0;
+        }
+        
+        .product-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .product-description {
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .product-options {
+            margin-bottom: 30px;
+        }
+        
+        .option-group {
+            margin-bottom: 20px;
+        }
+        
+        .option-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .option-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .option-btn {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            background-color: var(--light-gray);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .option-btn.active {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .personalization-form {
+            background-color: var(--light-gray);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            background-color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+        }
+        
+        .add-to-cart-large {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        
+        .product-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .featured-products {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 60px 0 20px;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background-color: var(--primary-color);
+                transition: var(--transition);
+                z-index: 999;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            nav ul li {
+                margin: 0 0 15px 0;
+            }
+
+            .product-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMjU2IDBDMTE0LjYgMCAwIDExNC42IDAgMjU2czExNC42IDI1NiAyNTYgMjU2czI1Ni0xMTQuNiAyNTYtMjU2UzM5Ny40IDAgMjU2IDB6TTM5OC45IDI1NmMwIDc4LjktNjQuMSAxNDMtMTQzIDE0M3MtMTQzLTY0LjEtMTQzLTE0M3M2NC4xLTE0MyAxNDMtMTQzczE0MyA2NC4xIDE0MyAxNDN6Ii8+PHBhdGggZmlsbD0iI2ZkMGQxYiIgZD0iTTM5OC45IDI1NmMwIDc4LjktNjQuMSAxNDMtMTQzIDE0M3MtMTQzLTY0LjEtMTQzLTE0M3M2NC4xLTE0MyAxNDMtMTQzczE0MyA2NC4xIDE0MyAxNDN6Ii8+PHBhdGggZmlsbD0iIzAwODUzZiIgZD0iTTI1NS45IDM2OGMtNjEuOSAwLTExMi01MC4xLTExMi0xMTJzNTAuMS0xMTIgMTEyLTExMnMxMTIgNTAuMSAxMTIgMTEycy01MC4xIDExMi0xMTIgMTEyeiIvPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0yODcuOSAyMjRoLTI0di00OGgtMjR2NDhoLTI0djcyaDI0djQ4aDI0di00OGgyNHYtNzJ6Ii8+PC9zdmc+" alt="Drapeau Sénégal">
+                Maillots & <span>Blousons</span> Sénégal
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                ☰
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="catalogue.html">Catalogue</a></li>
+                    <li><a href="maillots.html">Maillots</a></li>
+                    <li><a href="blousons.html">Blousons</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="panier.html" class="cart-icon">
+                    🛒
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="product-detail">
+        <div class="container">
+            <div class="product-container">
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img id="mainImage" src="" alt="Produit">
+                    </div>
+                    <div class="thumbnail-gallery" id="thumbnailGallery">
+                        <!-- Généré dynamiquement -->
+                    </div>
+                </div>
+                
+                <div class="product-info">
+                    <h1 class="product-title" id="productTitle">Chargement...</h1>
+                    <div class="product-price" id="productPrice">Chargement...</div>
+                    
+                    <div class="product-description" id="productDescription">
+                        Chargement...
+                    </div>
+                    
+                    <div class="product-options">
+                        <div class="option-group">
+                            <label class="option-label">Couleur</label>
+                            <div class="option-buttons" id="colorOptions">
+                                <!-- Généré dynamiquement -->
+                            </div>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label class="option-label">Taille</label>
+                            <div class="option-buttons" id="sizeOptions">
+                                <!-- Généré dynamiquement -->
+                            </div>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label class="option-label">Flocage</label>
+                            <div class="option-buttons" id="flocageOptions">
+                                <!-- Généré dynamiquement -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="personalization-form" id="personalizationForm" style="display: none;">
+                        <h3>Personnalisation</h3>
+                        <div class="form-group">
+                            <label for="playerName">Nom du joueur</label>
+                            <input type="text" id="playerName" placeholder="Ex: MANÉ">
+                        </div>
+                        <div class="form-group">
+                            <label for="playerNumber">Numéro</label>
+                            <input type="number" id="playerNumber" min="1" max="99" placeholder="Ex: 10">
+                        </div>
+                    </div>
+                    
+                    <div class="quantity-selector">
+                        <label>Quantité:</label>
+                        <button class="quantity-btn" id="decreaseQty">-</button>
+                        <input type="number" class="quantity-input" id="quantity" value="1" min="1" max="10">
+                        <button class="quantity-btn" id="increaseQty">+</button>
+                    </div>
+                    
+                    <button class="btn btn-secondary add-to-cart-large" id="addToCartBtn">
+                        Ajouter au panier - <span id="totalPrice">0</span> FCFA
+                    </button>
+                    
+                    <div class="product-meta">
+                        <div class="meta-item">
+                            <span>🔄</span>
+                            <span>Retours sous 14 jours</span>
+                        </div>
+                        <div class="meta-item">
+                            <span>🚚</span>
+                            <span>Livraison gratuite dès 25 000 FCFA</span>
+                        </div>
+                        <div class="meta-item">
+                            <span>⭐</span>
+                            <span>Garantie qualité</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="section-title">Produits Similaires</h2>
+            <div class="products-grid" id="similarProducts">
+                <!-- Généré dynamiquement -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Maillots & Blousons Sénégal. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Base de données des produits
+        const productsDatabase = {
+            'maillot-vert': {
+                id: 'maillot-vert',
+                name: "Maillot Sénégal Vert",
+                category: "maillot",
+                basePrice: 7500,
+                priceWithFlocage: 10000,
+                description: "Maillot officiel des Lions du Sénégal. Fabriqué en matériau haute qualité pour un confort optimal pendant l'effort. Design authentique aux couleurs nationales.",
+                features: [
+                    "100% Polyester technique",
+                    "Respirable et léger",
+                    "Logo brodé",
+                    "Disponible avec ou sans flocage"
+                ],
+                colors: ["vert", "blanc"],
+                sizes: ["S", "M", "L", "XL", "XXL"],
+                images: {
+                    vert: [
+                        "https://image-service.onefootball.com/transform?w=840&h=630&dpr=2&image=https%3A%2F%2Ffilebucket.onefootball.com%2F2024%2F11%2F1731525651755-GcSF_URWkAAYG8F.jpeg",
+                        "https://image-service.onefootball.com/transform?w=840&h=630&dpr=2&image=https%3A%2F%2Ffilebucket.onefootball.com%2F2024%2F11%2F1731524123452-image.png",
+                        "https://image-service.onefootball.com/transform?w=840&h=630&dpr=2&image=https%3A%2F%2Ffilebucket.onefootball.com%2F2024%2F11%2F1731524140150-image.png"
+                    ],
+                    blanc: [
+                        "https://via.placeholder.com/600x600/ffffff/000000?text=Maillot+Blanc+Avant",
+                        "https://via.placeholder.com/600x600/ffffff/000000?text=Maillot+Blanc+Dos",
+                        "https://via.placeholder.com/600x600/ffffff/000000?text=Maillot+Blanc+Détail"
+                    ]
+                },
+                hasFlocage: true
+            },
+            'maillot-blanc': {
+                id: 'maillot-blanc',
+                name: "Maillot Sénégal Blanc",
+                category: "maillot",
+                basePrice: 7500,
+                priceWithFlocage: 10000,
+                description: "Maillot officiel des Lions du Sénégal en version blanche. Élégant et confortable, parfait pour soutenir l'équipe nationale.",
+                features: [
+                    "100% Polyester technique",
+                    "Respirable et léger",
+                    "Logo brodé",
+                    "Disponible avec ou sans flocage"
+                ],
+                colors: ["blanc", "vert"],
+                sizes: ["S", "M", "L", "XL"],
+                images: {
+                    blanc: [
+                        "https://image-service.onefootball.com/transform?w=840&h=1120&dpr=2&image=https%3A%2F%2Ffilebucket.onefootball.com%2F2024%2F11%2F1731524093220-image.png",
+                        "https://cdn.blazimg.com/600/product/p/u/puma_777161-01_16-nw111924.webp",
+                        "https://cdn.blazimg.com/600/product/p/u/puma_777161-01_3-nw111924.webp"
+                    ],
+                    vert: [
+                        "https://via.placeholder.com/600x600/00853f/ffffff?text=Maillot+Vert+Avant",
+                        "https://via.placeholder.com/600x600/00853f/ffffff?text=Maillot+Vert+Dos",
+                        "https://via.placeholder.com/600x600/00853f/ffffff?text=Maillot+Vert+Détail"
+                    ]
+                },
+                hasFlocage: true
+            },
+            'blouson-vert': {
+                id: 'blouson-vert',
+                name: "Blouson Sénégal Vert",
+                category: "blouson",
+                price: 12000,
+                description: "Blouson officiel aux couleurs du Sénégal. Confortable et stylé, parfait pour les sorties entre supporters.",
+                features: [
+                    "100% Polyester",
+                    "Doux et confortable",
+                    "Logo brodé",
+                    "Fermeture éclair"
+                ],
+                colors: ["vert", "blanc"],
+                sizes: ["M", "L", "XL", "XXL"],
+                images: {
+                    vert: [
+                        "https://via.placeholder.com/600x600/00853f/ffffff?text=Blouson+Vert+Avant",
+                        "https://via.placeholder.com/600x600/00853f/ffffff?text=Blouson+Vert+Dos"
+                    ],
+                    blanc: [
+                        "https://via.placeholder.com/600x600/ffffff/000000?text=Blouson+Blanc+Avant",
+                        "https://via.placeholder.com/600x600/ffffff/000000?text=Blouson+Blanc+Dos"
+                    ]
+                },
+                hasFlocage: false
+            }
+        };
+
+        // Récupérer l'ID du produit depuis l'URL
+        function getProductIdFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id') || 'maillot-vert'; // Valeur par défaut
+        }
+
+        // Afficher le produit
+        function displayProduct(productId) {
+            const product = productsDatabase[productId];
+            
+            if (!product) {
+                document.getElementById('productTitle').textContent = "Produit non trouvé";
+                return;
+            }
+
+            // Mettre à jour les informations du produit
+            document.getElementById('productTitle').textContent = product.name;
+            document.getElementById('productDescription').innerHTML = `
+                <p>${product.description}</p>
+                <ul>
+                    ${product.features.map(feature => `<li>${feature}</li>`).join('')}
+                </ul>
+            `;
+
+            // Mettre à jour le prix
+            updatePriceDisplay(product);
+
+            // Générer les options de couleur
+            const colorOptions = document.getElementById('colorOptions');
+            colorOptions.innerHTML = '';
+            product.colors.forEach((color, index) => {
+                const button = document.createElement('button');
+                button.className = `option-btn ${index === 0 ? 'active' : ''}`;
+                button.textContent = color.charAt(0).toUpperCase() + color.slice(1);
+                button.dataset.color = color;
+                colorOptions.appendChild(button);
+            });
+
+            // Générer les options de taille
+            const sizeOptions = document.getElementById('sizeOptions');
+            sizeOptions.innerHTML = '';
+            product.sizes.forEach((size, index) => {
+                const button = document.createElement('button');
+                button.className = `option-btn ${index === 0 ? 'active' : ''}`;
+                button.textContent = size;
+                button.dataset.size = size;
+                sizeOptions.appendChild(button);
+            });
+
+            // Générer les options de flocage
+            const flocageOptions = document.getElementById('flocageOptions');
+            if (product.hasFlocage) {
+                flocageOptions.innerHTML = `
+                    <button class="option-btn" data-flocage="sans">Sans flocage</button>
+                    <button class="option-btn active" data-flocage="avec">Avec flocage</button>
+                `;
+            } else {
+                flocageOptions.innerHTML = '<span style="color: #666;">Non disponible pour ce produit</span>';
+            }
+
+            // Afficher les images
+            updateProductImages(product, product.colors[0]);
+
+            // Afficher les produits similaires
+            displaySimilarProducts(product.category, productId);
+        }
+
+        // Mettre à jour l'affichage des images
+        function updateProductImages(product, color) {
+            const mainImage = document.getElementById('mainImage');
+            const thumbnailGallery = document.getElementById('thumbnailGallery');
+            
+            const images = product.images[color] || product.images[Object.keys(product.images)[0]];
+            
+            if (images && images.length > 0) {
+                mainImage.src = images[0];
+                mainImage.alt = product.name;
+                
+                thumbnailGallery.innerHTML = '';
+                images.forEach((image, index) => {
+                    const thumbnail = document.createElement('div');
+                    thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
+                    thumbnail.dataset.image = image;
+                    
+                    const img = document.createElement('img');
+                    img.src = image.replace('600x600', '100x100');
+                    img.alt = `Vue ${index + 1}`;
+                    
+                    thumbnail.appendChild(img);
+                    thumbnailGallery.appendChild(thumbnail);
+                });
+            }
+        }
+
+        // Mettre à jour l'affichage du prix
+        function updatePriceDisplay(product) {
+            const priceElement = document.getElementById('productPrice');
+            if (product.hasFlocage) {
+                priceElement.innerHTML = `
+                    <span id="basePrice">${product.basePrice.toLocaleString()} FCFA</span>
+                    <span id="flocagePrice"> - ${product.priceWithFlocage.toLocaleString()} FCFA</span>
+                `;
+            } else {
+                priceElement.innerHTML = `<span>${product.price.toLocaleString()} FCFA</span>`;
+            }
+            updateTotalPrice(product);
+        }
+
+        // Afficher les produits similaires
+        function displaySimilarProducts(category, currentProductId) {
+            const similarProductsContainer = document.getElementById('similarProducts');
+            const similarProducts = Object.values(productsDatabase)
+                .filter(product => product.category === category && product.id !== currentProductId)
+                .slice(0, 3);
+
+            similarProductsContainer.innerHTML = '';
+            
+            similarProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                const firstColor = product.colors[0];
+                const firstImage = product.images[firstColor] ? product.images[firstColor][0].replace('600x600', '300x300') : 'https://via.placeholder.com/300x300';
+                
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${firstImage}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-price">${product.hasFlocage ? 
+                            `${product.basePrice.toLocaleString()} - ${product.priceWithFlocage.toLocaleString()} FCFA` : 
+                            `${product.price.toLocaleString()} FCFA`}
+                        </p>
+                        <div class="product-actions">
+                            <a href="produit.html?id=${product.id}" class="btn">Voir détails</a>
+                            <button class="btn btn-secondary add-to-cart-similar" data-id="${product.id}">Ajouter</button>
+                        </div>
+                    </div>
+                `;
+                
+                similarProductsContainer.appendChild(productCard);
+            });
+        }
+
+        // Variables globales
+        let selectedColor = '';
+        let selectedSize = '';
+        let selectedFlocage = 'avec';
+        let quantity = 1;
+        let currentProduct = null;
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            const productId = getProductIdFromURL();
+            currentProduct = productsDatabase[productId];
+            displayProduct(productId);
+            
+            // Définir les valeurs par défaut
+            if (currentProduct) {
+                selectedColor = currentProduct.colors[0];
+                selectedSize = currentProduct.sizes[0];
+            }
+
+            // Événements
+            setupEventListeners();
+            updateCartCount();
+        });
+
+        // Configuration des événements
+        function setupEventListeners() {
+            // Gestion de la galerie d'images
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.thumbnail')) {
+                    const thumbnail = e.target.closest('.thumbnail');
+                    document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                    thumbnail.classList.add('active');
+                    document.getElementById('mainImage').src = thumbnail.dataset.image;
+                }
+            });
+
+            // Gestion des options
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.option-btn[data-color]')) {
+                    const button = e.target.closest('.option-btn[data-color]');
+                    document.querySelectorAll('.option-btn[data-color]').forEach(b => b.classList.remove('active'));
+                    button.classList.add('active');
+                    selectedColor = button.dataset.color;
+                    updateProductImages(currentProduct, selectedColor);
+                }
+
+                if (e.target.closest('.option-btn[data-size]')) {
+                    const button = e.target.closest('.option-btn[data-size]');
+                    document.querySelectorAll('.option-btn[data-size]').forEach(b => b.classList.remove('active'));
+                    button.classList.add('active');
+                    selectedSize = button.dataset.size;
+                }
+
+                if (e.target.closest('.option-btn[data-flocage]')) {
+                    const button = e.target.closest('.option-btn[data-flocage]');
+                    document.querySelectorAll('.option-btn[data-flocage]').forEach(b => b.classList.remove('active'));
+                    button.classList.add('active');
+                    selectedFlocage = button.dataset.flocage;
+                    togglePersonalizationForm();
+                    updateTotalPrice(currentProduct);
+                }
+            });
+
+            // Gestion de la quantité
+            document.getElementById('increaseQty').addEventListener('click', function() {
+                if (quantity < 10) {
+                    quantity++;
+                    document.getElementById('quantity').value = quantity;
+                    updateTotalPrice(currentProduct);
+                }
+            });
+
+            document.getElementById('decreaseQty').addEventListener('click', function() {
+                if (quantity > 1) {
+                    quantity--;
+                    document.getElementById('quantity').value = quantity;
+                    updateTotalPrice(currentProduct);
+                }
+            });
+
+            document.getElementById('quantity').addEventListener('change', function() {
+                quantity = parseInt(this.value) || 1;
+                if (quantity < 1) quantity = 1;
+                if (quantity > 10) quantity = 10;
+                this.value = quantity;
+                updateTotalPrice(currentProduct);
+            });
+
+            // Ajout au panier
+            document.getElementById('addToCartBtn').addEventListener('click', function() {
+                addToCart();
+            });
+
+            // Produits similaires - ajout au panier
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.add-to-cart-similar')) {
+                    const productId = e.target.closest('.add-to-cart-similar').dataset.id;
+                    const product = productsDatabase[productId];
+                    
+                    if (product) {
+                        const cartItem = {
+                            id: product.id,
+                            name: product.name,
+                            color: product.colors[0],
+                            size: product.sizes[0],
+                            flocage: product.hasFlocage ? 'avec' : 'sans',
+                            quantity: 1,
+                            unitPrice: product.hasFlocage ? product.priceWithFlocage : (product.price || product.basePrice),
+                            image: product.images[product.colors[0]][0].replace('600x600', '100x100')
+                        };
+                        
+                        addItemToCart(cartItem);
+                        alert('Produit ajouté au panier!');
+                    }
+                }
+            });
+        }
+
+        function togglePersonalizationForm() {
+            const form = document.getElementById('personalizationForm');
+            if (selectedFlocage === 'avec' && currentProduct.hasFlocage) {
+                form.style.display = 'block';
+            } else {
+                form.style.display = 'none';
+            }
+        }
+
+        function updateTotalPrice(product) {
+            if (!product) return;
+            
+            let unitPrice;
+            if (product.hasFlocage) {
+                unitPrice = selectedFlocage === 'avec' ? product.priceWithFlocage : product.basePrice;
+            } else {
+                unitPrice = product.price || product.basePrice;
+            }
+            
+            const total = unitPrice * quantity;
+            document.getElementById('totalPrice').textContent = total.toLocaleString();
+        }
+
+        function addToCart() {
+            if (!currentProduct) return;
+
+            const product = {
+                id: currentProduct.id,
+                name: currentProduct.name,
+                color: selectedColor,
+                size: selectedSize,
+                flocage: selectedFlocage,
+                quantity: quantity,
+                unitPrice: selectedFlocage === 'avec' && currentProduct.hasFlocage ? 
+                    currentProduct.priceWithFlocage : currentProduct.basePrice,
+                personalization: selectedFlocage === 'avec' && currentProduct.hasFlocage ? {
+                    name: document.getElementById('playerName').value,
+                    number: document.getElementById('playerNumber').value
+                } : null,
+                image: currentProduct.images[selectedColor] ? 
+                    currentProduct.images[selectedColor][0].replace('600x600', '100x100') : 
+                    'https://via.placeholder.com/100x100'
+            };
+
+            addItemToCart(product);
+            alert('Produit ajouté au panier!');
+        }
+
+        function addItemToCart(item) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(item);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = totalItems;
+        }
+
+        // Menu mobile
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
